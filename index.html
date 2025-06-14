@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Way To Grow - Freelance Menu Design & Video Editing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+    .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg fixed w-full z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-indigo-600">Way To Grow</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="#home" class="text-gray-700 hover:text-indigo-600 px-3 py-2">Home</a>
+          <a href="#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2">Services</a>
+          <a href="#portfolio" class="text-gray-700 hover:text-indigo-600 px-3 py-2">Portfolio</a>
+          <a href="#client-notes" class="text-gray-700 hover:text-indigo-600 px-3 py-2">Client Notes</a>
+          <a href="#contact" class="text-gray-700 hover:text-indigo-600 px-3 py-2">Contact</a>
+          <button id="admin-login-btn" onclick="toggleAdminLogin()" class="text-gray-700 hover:text-indigo-600 px-3 py-2">Admin Login</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Admin Login Modal -->
+  <div id="admin-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+      <h3 class="text-lg font-semibold mb-4">Admin Login</h3>
+      <input type="password" id="admin-password" placeholder="Enter Password" class="w-full p-3 mb-4 border rounded-lg">
+      <div class="flex justify-end space-x-2">
+        <button onclick="adminLogin()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">Login</button>
+        <button onclick="toggleAdminLogin()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home" class="h-screen bg-indigo-600 text-white flex items-center justify-center">
+    <div class="text-center px-4">
+      <h2 class="text-4xl sm:text-5xl font-bold mb-4">Way To Grow</h2>
+      <p class="text-lg sm:text-xl mb-6">Professional Menu Card Design & Video Editing for Hotels, Cafes, Instagram, YouTube, and More</p>
+      <a href="#contact" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Services</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div class="p-6 bg-gray-100 rounded-lg shadow-md text-center">
+          <h3 class="text-xl font-semibold mb-4">Menu Card Design</h3>
+          <p class="text-gray-600">Custom, eye-catching menu designs tailored for hotels, cafes, and restaurants to attract customers.</p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-lg shadow-md text-center">
+          <h3 class="text-xl font-semibold mb-4">Video Editing</h3>
+          <p class="text-gray-600">Professional video editing for promotional content, events, and social media to elevate your brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="py-16 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Work</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-items">
+        <!-- Sample Portfolio Items -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden portfolio-item">
+          <img src="https://via.placeholder.com/400x300" alt="Menu Design 1" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg font-semibold">Cafe Menu Design</h3>
+            <p class="text-gray-600">Elegant menu for a cozy cafe.</p>
+            <button class="hidden delete-btn bg-red-600 text-white px-2 py-1 rounded mt-2 hover:bg-red-700" onclick="deletePortfolioItem(this)">Delete</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden portfolio-item">
+          <div class="video-container">
+            <video controls>
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold">Promotional Video</h3>
+            <p class="text-gray-600">Engaging video for a restaurant.</p>
+            <button class="hidden delete-btn bg-red-600 text-white px-2 py-1 rounded mt-2 hover:bg-red-700" onclick="deletePortfolioItem(this)">Delete</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden portfolio-item">
+          <img src="https://via.placeholder.com/400x300" alt="Menu Design 2" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg font-semibold">Hotel Menu Design</h3>
+            <p class="text-gray-600">Luxurious menu for a 5-star hotel.</p>
+            <button class="hidden delete-btn bg-red-600 text-white px-2 py-1 rounded mt-2 hover:bg-red-700" onclick="deletePortfolioItem(this)">Delete</button>
+          </div>
+        </div>
+      </div>
+      <!-- Upload Portfolio Form -->
+      <div class="mt-12 text-center hidden" id="upload-section">
+        <h3 class="text-xl font-semibold mb-4">Upload Your Work</h3>
+        <input type="file" accept="image/*,video/*" id="portfolio-upload" class="mb-4">
+        <button onclick="uploadPortfolio()" class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700">Upload</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Notes Section -->
+  <section id="client-notes" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Client Notes</h2>
+      <!-- Client Submission Form -->
+      <div class="max-w-lg mx-auto mb-12">
+        <h3 class="text-xl font-semibold mb-4">Submit Your Notes</h3>
+        <input type="text" id="client-name" placeholder="Your Name" class="w-full p-3 mb-4 border rounded-lg">
+        <input type="email" id="client-email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded-lg">
+        <textarea id="client-note" placeholder="Your Notes" rows="5" class="w-full p-3 mb-4 border rounded-lg"></textarea>
+        <button onclick="submitClientNote()" class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 w-full">Submit Note</button>
+      </div>
+      <!-- Admin-Only Client Notes Display -->
+      <div id="client-notes-list" class="hidden max-w-4xl mx-auto">
+        <h3 class="text-xl font-semibold mb-4">Client Notes (Admin Only)</h3>
+        <div id="notes-container" class="space-y-4"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Contact Us</h2>
+      <div class="max-w-lg mx-auto text-center">
+        <p class="text-lg mb-4">Reach out to us at: <a href="mailto:waytogrow6@gmail.com" class="text-indigo-600 hover:underline">waytogrow6@gmail.com</a></p>
+        <div>
+          <input type="text" id="name" placeholder="Your Name" class="w-full p-3 mb-4 border rounded-lg">
+          <input type="email" id="email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded-lg">
+          <textarea id="message" placeholder="Your Message" rows="5" class="w-full p-3 mb-4 border rounded-lg"></textarea>
+          <button onclick="sendMessage()" class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 w-full">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>© 2025 Way To Grow. All rights reserved.</p>
+      <div class="mt-4 space-x-4">
+        <a href="#" class="text-gray-400 hover:text-white">Facebook</a>
+        <a href="#" class="text-gray-400 hover:text-white">Instagram</a>
+        <a href="#" class="text-gray-400 hover:text-white">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const ADMIN_PASSWORD = "Workx9~"; // Change this to a secure password
+    let isAdminLoggedIn = false;
+
+    // Admin Login/Logout
+    function toggleAdminLogin() {
+      const modal = document.getElementById('admin-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function adminLogin() {
+      const password = document.getElementById('admin-password').value;
+      if (password === ADMIN_PASSWORD) {
+        isAdminLoggedIn = true;
+        document.getElementById('admin-login-btn').textContent = 'Admin Logout';
+        document.getElementById('upload-section').classList.remove('hidden');
+        document.getElementById('client-notes-list').classList.remove('hidden');
+        document.querySelectorAll('.delete-btn').forEach(btn => btn.classList.remove('hidden'));
+        loadClientNotes();
+        toggleAdminLogin();
+        document.getElementById('admin-password').value = '';
+        alert('Logged in as admin!');
+      } else {
+        alert('Incorrect password!');
+      }
+    }
+
+    function toggleAdminLogout() {
+      isAdminLoggedIn = false;
+      document.getElementById('admin-login-btn').textContent = 'Admin Login';
+      document.getElementById('upload-section').classList.add('hidden');
+      document.getElementById('client-notes-list').classList.add('hidden');
+      document.querySelectorAll('.delete-btn').forEach(btn => btn.classList.add('hidden'));
+    }
+
+    document.getElementById('admin-login-btn').onclick = function() {
+      if (isAdminLoggedIn) {
+        toggleAdminLogout();
+      } else {
+        toggleAdminLogin();
+      }
+    };
+
+    // Portfolio Upload
+    function uploadPortfolio() {
+      if (!isAdminLoggedIn) {
+        alert('Please log in as admin to upload.');
+        return;
+      }
+      const fileInput = document.getElementById('portfolio-upload');
+      const file = fileInput.files[0];
+      if (file) {
+        const portfolioItems = document.getElementById('portfolio-items');
+        const div = document.createElement('div');
+        div.className = 'bg-white rounded-lg shadow-md overflow-hidden portfolio-item';
+        
+        if (file.type.startsWith('image/')) {
+          const img = document.createElement('img');
+          img.src = URL.createObjectURL(file);
+          img.className = 'w-full h-48 object-cover';
+          div.appendChild(img);
+        } else if (file.type.startsWith('video/')) {
+          const videoContainer = document.createElement('div');
+          videoContainer.className = 'video-container';
+          const video = document.createElement('video');
+          video.src = URL.createObjectURL(file);
+          video.controls = true;
+          videoContainer.appendChild(video);
+          div.appendChild(videoContainer);
+        }
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'p-4';
+        contentDiv.innerHTML = `
+          <h3 class="text-lg font-semibold">${file.name}</h3>
+          <p class="text-gray-600">Uploaded by Way To Grow</p>
+          <button class="${isAdminLoggedIn ? '' : 'hidden'} delete-btn bg-red-600 text-white px-2 py-1 rounded mt-2 hover:bg-red-700" onclick="deletePortfolioItem(this)">Delete</button>
+        `;
+        div.appendChild(contentDiv);
+        portfolioItems.prepend(div);
+        fileInput.value = '';
+        alert('Portfolio item uploaded successfully!');
+      } else {
+        alert('Please select a file to upload.');
+      }
+    }
+
+    // Portfolio Delete
+    function deletePortfolioItem(button) {
+      if (!isAdminLoggedIn) {
+        alert('Please log in as admin to delete.');
+        return;
+      }
+      const portfolioItem = button.closest('.portfolio-item');
+      portfolioItem.remove();
+      alert('Portfolio item deleted successfully!');
+    }
+
+    // Client Notes Handling
+    function submitClientNote() {
+      const name = document.getElementById('client-name').value;
+      const email = document.getElementById('client-email').value;
+      const note = document.getElementById('client-note').value;
+      if (name && email && note) {
+        const notes = JSON.parse(localStorage.getItem('clientNotes') || '[]');
+        const newNote = { id: Date.now(), name, email, note, timestamp: new Date().toLocaleString() };
+        notes.push(newNote);
+        localStorage.setItem('clientNotes', JSON.stringify(notes));
+        document.getElementById('client-name').value = '';
+        document.getElementById('client-email').value = '';
+        document.getElementById('client-note').value = '';
+        alert('Note submitted successfully!');
+        if (isAdminLoggedIn) {
+          loadClientNotes();
+        }
+      } else {
+        alert('Please fill out all fields.');
+      }
+    }
+
+    function loadClientNotes() {
+      if (!isAdminLoggedIn) return;
+      const notesContainer = document.getElementById('notes-container');
+      notesContainer.innerHTML = '';
+      const notes = JSON.parse(localStorage.getItem('clientNotes') || '[]');
+      notes.forEach(note => {
+        const div = document.createElement('div');
+        div.className = 'bg-gray-100 p-4 rounded-lg shadow-md';
+        div.innerHTML = `
+          <p><strong>Name:</strong> ${note.name}</p>
+          <p><strong>Email:</strong> ${note.email}</p>
+          <p><strong>Note:</strong> ${note.note}</p>
+          <p><strong>Submitted:</strong> ${note.timestamp}</p>
+          <button class="bg-red-600 text-white px-2 py-1 rounded mt-2 hover:bg-red-700" onclick="deleteClientNote(${note.id})">Delete</button>
+        `;
+        notesContainer.appendChild(div);
+      });
+    }
+
+    function deleteClientNote(id) {
+      if (!isAdminLoggedIn) {
+        alert('Please log in as admin to delete.');
+        return;
+      }
+      let notes = JSON.parse(localStorage.getItem('clientNotes') || '[]');
+      notes = notes.filter(note => note.id !== id);
+      localStorage.setItem('clientNotes', JSON.stringify(notes));
+      loadClientNotes();
+      alert('Note deleted successfully!');
+    }
+
+    // Contact Form
+    function sendMessage() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      if (name && email && message) {
+        alert('Message sent successfully!');
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('message').value = '';
+      } else {
+        alert('Please fill out all fields.');
+      }
+    }
+  </script>
+</body>
+</html>
